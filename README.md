@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fake iMessage Generator</title>
+  <title>iMessage Generator - iOS 16/17 Style</title>
   <style>
     body {
-      background: #d1d1d6;
+      background: #f2f2f7;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
       text-align: center;
       margin: 0;
@@ -15,49 +15,56 @@
 
     h2 {
       margin-bottom: 10px;
+      font-size: 24px;
+      color: #333;
     }
 
     .controls {
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input, button {
+      padding: 12px 20px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      margin: 10px 0;
+      font-size: 16px;
+      width: 80%;
+      max-width: 500px;
     }
 
     input {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin: 5px;
-      width: 80%;
+      background-color: #fff;
+      color: #333;
     }
 
     button {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 8px;
-      background: #007aff;
+      background-color: #007aff;
       color: white;
       cursor: pointer;
-      margin: 5px;
     }
 
     button:hover {
-      background: #005ecb;
+      background-color: #005ecb;
     }
 
     .iphone {
-      width: 340px;
-      height: 640px;
+      width: 375px;
+      height: 667px;
       margin: 0 auto;
-      border: 16px solid #333;
-      border-radius: 40px;
-      background: #fefefe;
-      position: relative;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      border-radius: 50px;
+      background: white;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
       overflow: hidden;
+      position: relative;
     }
 
     .status-bar {
       height: 20px;
-      background: #fefefe;
+      background: #f2f2f7;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -67,45 +74,46 @@
     }
 
     .header {
-      background: #fefefe;
+      background: #f2f2f7;
       border-bottom: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
+      padding: 8px 15px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 16px;
       color: #000;
+      text-align: left;
     }
 
     .chatArea {
-      background: #f0f0f5;
-      height: 560px;
+      background: #e5e5ea;
+      height: 500px;
       overflow-y: auto;
-      padding: 15px;
+      padding: 10px;
       text-align: left;
+      padding-top: 30px;
     }
 
     .bubble {
       display: inline-block;
-      padding: 10px 15px;
-      border-radius: 18px;
-      margin: 8px 0;
+      padding: 12px 18px;
+      border-radius: 25px;
+      margin: 10px 0;
       max-width: 75%;
-      clear: both;
       word-wrap: break-word;
+      position: relative;
     }
 
     .sent {
       background: #007aff;
       color: white;
       float: right;
-      border-bottom-right-radius: 4px;
+      border-bottom-right-radius: 5px;
     }
 
     .received {
       background: #e5e5ea;
-      color: black;
+      color: #333;
       float: left;
-      border-bottom-left-radius: 4px;
+      border-bottom-left-radius: 5px;
     }
 
     .time {
@@ -113,33 +121,33 @@
       color: #999;
       clear: both;
       text-align: center;
-      margin-top: 4px;
-    }
-
-    #contactName {
-      width: 80%;
-      padding: 8px;
-      margin-bottom: 10px;
+      margin-top: 6px;
     }
 
     .download-btn {
-      padding: 8px 12px;
-      background-color: #4CAF50;
+      padding: 12px 24px;
+      background-color: #34c759;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 50px;
       cursor: pointer;
       margin-top: 15px;
     }
 
     .download-btn:hover {
-      background-color: #45a049;
+      background-color: #28a745;
+    }
+
+    .reaction {
+      font-size: 16px;
+      margin-top: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <h2>Fake iMessage Generator</h2>
+  <h2>iMessage Generator - iOS 16/17</h2>
 
   <div class="controls">
     <input id="contactName" placeholder="Enter Contact Name (e.g. John)">
@@ -177,6 +185,12 @@
       msg.className = "bubble " + type;
       msg.textContent = messageText;
 
+      // Add emoji reactions (as in iOS)
+      const reactions = document.createElement("div");
+      reactions.className = "reaction";
+      reactions.innerHTML = "👍 ❤️ 😄";
+      msg.appendChild(reactions);
+
       chatArea.appendChild(msg);
 
       // Add time below message
@@ -204,7 +218,7 @@
       const chatBox = document.getElementById("chatBox");
       html2canvas(chatBox).then(canvas => {
         const link = document.createElement("a");
-        link.download = "fake-imessage.png";
+        link.download = "fake-imessage-ios16.png";
         link.href = canvas.toDataURL();
         link.click();
       });
