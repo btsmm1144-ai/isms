@@ -6,7 +6,7 @@
   <title>iMessage Generator - iOS 16/17 Style</title>
   <style>
     body {
-      background: #f2f2f7;
+      background: #latest ios;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
       text-align: center;
       margin: 0;
